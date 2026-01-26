@@ -10,3 +10,43 @@
 Créer une application web permettant de faire du CRUD sur les fichiers et répertoires (création, lecture, écriture, suppression).
 
 # NB: README à mettre à jour progressivement par l'équipe.
+## Technologies utilisées
+- Python 3
+- Django
+- Système d’exploitation : Linux (Pop!_OS)
+
+## Prérequis
+- Python 3.x
+- pip
+- virtualenv (optionnel)
+
+## Installation
+
+1. Cloner le dépôt :
+
+    git clone https://github.com/OpenSecureFoundation/Linux-Web-File-Explorer.git
+    cd Linux-Web-File-Explorer
+
+2. Créer et activer l’environnement virtuel :
+
+    python -m venv env
+    source env/bin/activate  # Linux
+
+3. Installer les dépendances :
+
+    pip install -r requirements.txt
+
+4. Appliquer les migrations :
+
+    python manage.py migrate
+
+5. Lancer le serveur :
+
+    python manage.py runserver
+
+6. Accéder à l’application :
+    Ouvrir le navigateur à l’adresse :
+    http://127.0.0.1:8000/
+    
+# Étapes en cours... 
+    ##Conception des interfaces Html Css

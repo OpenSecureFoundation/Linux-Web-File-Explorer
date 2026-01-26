@@ -31,7 +31,7 @@ Créer une application web permettant de faire du CRUD sur les fichiers et répe
 - source env/bin/activate  # Linux
 
 4. Installer les dépendances :
-- pip install -r requirements.txt
+- pip install -r requirement.txt
 
 5. Appliquer les migrations :
 - python manage.py migrate

@@ -23,24 +23,24 @@ Créer une application web permettant de faire du CRUD sur les fichiers et répe
 ## Installation
 
 1. Cloner le dépôt :
--git clone https://github.com/OpenSecureFoundation/Linux-Web-File-Explorer.git
--cd Linux-Web-File-Explorer
+- git clone https://github.com/OpenSecureFoundation/Linux-Web-File-Explorer.git
+- cd Linux-Web-File-Explorer
 
 2. Créer et activer l’environnement virtuel :
--python -m venv env
--source env/bin/activate  # Linux
+- python -m venv env
+- source env/bin/activate  # Linux
 
 4. Installer les dépendances :
--pip install -r requirements.txt
+- pip install -r requirements.txt
 
 5. Appliquer les migrations :
--python manage.py migrate
+- python manage.py migrate
 
 6. Lancer le serveur :
--python manage.py runserver
+- python manage.py runserver
 
 7. Accéder à l’application :
--Ouvrir le navigateur à l’adresse :http://127.0.0.1:8000/
+- Ouvrir le navigateur à l’adresse :http://127.0.0.1:8000/
     
 # Étapes en cours... 
     ##Conception des interfaces Html Css

@@ -34,7 +34,7 @@ Créer une application web permettant de faire du CRUD sur les fichiers et répe
 - pip install -r requirement.txt
 
 5. Appliquer les migrations :
-   entre dans le repertoire : "cd fileManager" avec de taper la commande  
+   entre dans le repertoire : "cd fileManager" avant de taper la commande  
 - python manage.py migrate
 
 6. Lancer le serveur :

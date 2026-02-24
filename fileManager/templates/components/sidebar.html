@@ -1,0 +1,22 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+<link rel="stylesheet" href="{% static 'css/folder_item.css' %}">
+
+<div class="fm-sidebar">
+
+    <!-- Chemin courant -->
+    <div class="fm-sidebar__path-bar">
+        <input type="text" class="fm-path-input" value="{{ current_path }}" readonly>
+        <button class="fm-path-go">Go</button>
+    </div>
+
+    <!-- Collapse All -->
+    <div class="fm-sidebar__controls">
+        <button class="fm-collapse-btn" id="fm-collapse-all">Collapse All</button>
+    </div>
+
+    <!-- Arbre de dossiers -->
+    <nav class="fm-tree" id="fm-sidebar-tree" aria-label="Arborescence">
+        {% include "components/sidebar_tree_node.html" with nodes=sidebar_tree depth=0 %}
+    </nav>
+</div>

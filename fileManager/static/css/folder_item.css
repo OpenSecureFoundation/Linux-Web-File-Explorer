@@ -1,0 +1,27 @@
+/* ============================================================
+   folder_item.css  –  Ligne dossier dans le tableau
+   ============================================================ */
+
+/* L'icône dossier (carré orange style cPanel) */
+.fm-file-icon--folder {
+    display: inline-block;
+    width: 18px;
+    height: 15px;
+    border-radius: 0 3px 3px 3px;
+    background: #f5a623;
+    box-shadow: inset -1px -1px 0 rgba(0,0,0,0.15);
+    flex-shrink: 0;
+    position: relative;
+}
+
+/* Onglet du dossier (coin supérieur gauche) */
+.fm-file-icon--folder::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 7px;
+    height: 4px;
+    background: #f5a623;
+    border-radius: 2px 2px 0 0;
+}

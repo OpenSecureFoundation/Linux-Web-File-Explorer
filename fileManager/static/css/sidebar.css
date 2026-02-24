@@ -1,0 +1,207 @@
+/* ============================================================
+   sidebar.css  –  Arborescence de dossiers
+   ============================================================ */
+
+.fm-sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #ffffff;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Barre chemin ──────────────────────────────────────── */
+.fm-sidebar__path-bar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 8px;
+    border-bottom: 1px solid #e2e7ef;
+    background: #f8fafc;
+    flex-shrink: 0;
+}
+
+.fm-path-input {
+    flex: 1;
+    border: 1px solid #c9d0de;
+    border-radius: 4px;
+    padding: 3px 7px;
+    font-size: 11.5px;
+    font-family: 'Consolas', monospace;
+    color: #374151;
+    background: #fff;
+    outline: none;
+    height: 26px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fm-path-input:focus { border-color: #3b82f6; }
+
+.fm-path-go {
+    background: #2a72c8;
+    color: #fff;
+    border: 1px solid #1f5ea8;
+    border-radius: 4px;
+    padding: 3px 10px;
+    height: 26px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.fm-path-go:hover { background: #1f5ea8; }
+
+/* ── Collapse All ──────────────────────────────────────── */
+.fm-sidebar__controls {
+    padding: 5px 8px;
+    border-bottom: 1px solid #e2e7ef;
+    flex-shrink: 0;
+}
+
+.fm-collapse-btn {
+    display: block;
+    width: 100%;
+    background: #f0f4f8;
+    border: 1px solid #c9d0de;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    color: #374151;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    transition: background 0.1s;
+}
+
+.fm-collapse-btn:hover { background: #dde3ec; }
+
+/* ── Arbre ─────────────────────────────────────────────── */
+.fm-tree {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 4px 0;
+}
+
+.fm-tree::-webkit-scrollbar { width: 5px; }
+.fm-tree::-webkit-scrollbar-thumb { background: #c9d0de; border-radius: 3px; }
+
+/* ── Noeud ─────────────────────────────────────────────── */
+.fm-tree-node { position: relative; }
+
+/* Ligne de noeud */
+.fm-tree-row {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 3px 6px 3px 0;
+    padding-left: calc(8px + var(--depth, 0) * 16px);
+    cursor: pointer;
+    min-height: 24px;
+    border-radius: 0;
+    user-select: none;
+    transition: background 0.08s;
+}
+
+.fm-tree-row:hover { background: #f0f4fa; }
+
+.fm-tree-row--active { background: #dbeafe; }
+.fm-tree-row--active:hover { background: #bfdbfe; }
+
+.fm-tree-row--root {
+    font-weight: 700;
+    color: #1a6fcf;
+}
+
+/* Toggle bouton */
+.fm-tree-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #6b7280;
+    transition: transform 0.15s;
+    border-radius: 2px;
+}
+
+.fm-tree-toggle:hover { background: #d1d8e8; color: #374151; }
+
+/* Flèche orientée vers le bas = ouvert, vers la droite = fermé */
+.fm-tree-toggle--open svg { transform: rotate(0deg); transition: transform 0.15s; }
+.fm-tree-toggle--closed svg { transform: rotate(-90deg); transition: transform 0.15s; }
+
+.fm-tree-toggle-placeholder {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+/* Icônes */
+.fm-tree-icon {
+    display: inline-block;
+    width: 16px;
+    height: 13px;
+    border-radius: 0 3px 3px 3px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.fm-tree-icon--folder {
+    background: #f5a623;
+    box-shadow: inset -1px -1px 0 rgba(0,0,0,0.15);
+}
+
+.fm-tree-icon--folder::before {
+    content: '';
+    position: absolute;
+    top: -4px; left: 0;
+    width: 6px; height: 4px;
+    background: #f5a623;
+    border-radius: 2px 2px 0 0;
+}
+
+.fm-tree-icon--home {
+    background: #e67e22;
+    box-shadow: inset -1px -1px 0 rgba(0,0,0,0.15);
+}
+
+.fm-tree-icon--home::before {
+    content: '';
+    position: absolute;
+    top: -4px; left: 0;
+    width: 6px; height: 4px;
+    background: #e67e22;
+    border-radius: 2px 2px 0 0;
+}
+
+/* Label */
+.fm-tree-label {
+    font-size: 12.5px;
+    color: #2c3e50;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+}
+
+.fm-tree-row--root .fm-tree-label { color: #1a6fcf; }
+.fm-tree-row--active .fm-tree-label { color: #1d4ed8; font-weight: 600; }
+
+/* Enfants masqués/affichés */
+.fm-tree-children {
+    /* visible par défaut, JS toggle */
+}
+
+.fm-tree-children.fm-tree-children--collapsed {
+    display: none;
+}

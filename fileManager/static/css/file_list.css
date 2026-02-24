@@ -1,0 +1,350 @@
+/* ============================================================
+   file_list.css  –  Zone principale : nav bar + tableau
+   ============================================================ */
+
+.fm-filelist {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* ── Barre de navigation ───────────────────────────────── */
+.fm-nav-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1px;
+    padding: 5px 10px;
+    background: #f4f6f9;
+    border-bottom: 1px solid #dde1e8;
+    flex-shrink: 0;
+}
+
+.fm-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    font-size: 12.5px;
+    color: #2c3e50;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background: transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background 0.1s, border-color 0.1s;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.fm-nav-btn:hover {
+    background: #e2e7ef;
+    border-color: #c5cbd8;
+    color: #1a2535;
+}
+
+.fm-nav-btn--reload { color: #1a6fcf; }
+.fm-nav-btn--reload:hover { color: #1557a0; }
+
+.fm-nav-btn--trash { color: #64748b; }
+.fm-nav-btn--trash:hover { color: #e53e3e; border-color: #fca5a5; background: #fff5f5; }
+
+.fm-nav-sep {
+    display: inline-block;
+    width: 1px;
+    height: 18px;
+    background: #d1d5db;
+    margin: 0 4px;
+}
+
+/* ── Zone scrollable tableau ───────────────────────────── */
+.fm-table-scroll {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.fm-table-scroll::-webkit-scrollbar        { width: 7px; height: 7px; }
+.fm-table-scroll::-webkit-scrollbar-track  { background: #f4f6f9; }
+.fm-table-scroll::-webkit-scrollbar-thumb  { background: #b8c1ce; border-radius: 4px; }
+
+/* ── Tableau ───────────────────────────────────────────── */
+.fm-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    table-layout: fixed;
+}
+
+/* En-têtes collants */
+.fm-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.fm-th {
+    background: #edf0f5;
+    border-bottom: 2px solid #d1d8e3;
+    padding: 7px 10px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: #374151;
+    white-space: nowrap;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.fm-th--check   { width: 34px; }
+.fm-th--name    { width: auto; min-width: 200px; }
+.fm-th--size    { width: 80px; }
+.fm-th--date    { width: 190px; }
+.fm-th--type    { width: 170px; }
+.fm-th--perm    { width: 100px; }
+
+.fm-th-link {
+    color: #1a6fcf;
+    font-weight: 600;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.fm-th-link:hover { text-decoration: underline; color: #1557a0; }
+.fm-th-link--active { color: #1a6fcf; }
+
+/* ── Lignes ────────────────────────────────────────────── */
+.fm-row td {
+    padding: 5px 10px;
+    border-bottom: 1px solid #e8ecf2;
+    vertical-align: middle;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.fm-row:hover td { background: #f0f4fa; cursor: pointer; }
+
+.fm-row--selected td { background: #dbeafe; }
+.fm-row--selected:hover td { background: #bfdbfe; }
+
+/* Nom du fichier / dossier */
+.fm-cell--name {
+    display: flex !important;
+    align-items: center;
+    gap: 7px;
+    min-width: 0;
+}
+
+.fm-file-link {
+    color: #1a6fcf;
+    font-size: 13px;
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fm-file-link:hover { color: #1557a0; text-decoration: underline; }
+
+/* Colonnes secondaires */
+.fm-cell--size,
+.fm-cell--modified { color: #6b7280; font-size: 12.5px; }
+
+.fm-cell--type,
+.fm-cell--perm {
+    color: #6b7280;
+    font-size: 12px;
+    font-family: 'Consolas', monospace;
+}
+
+/* Checkbox */
+.fm-checkbox {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    accent-color: #2563eb;
+}
+
+/* ── Responsive File List ───────────────────────────── */
+@media (max-width: 768px) {
+    .fm-nav-bar {
+        padding: 8px;
+        gap: 4px;
+        justify-content: center;
+    }
+
+    .fm-nav-btn {
+        font-size: 11px;
+        padding: 6px 8px;
+        min-width: 0;
+        flex: 0 0 auto;
+    }
+
+    .fm-nav-sep {
+        display: none;
+    }
+
+    .fm-table {
+        font-size: 12px;
+    }
+
+    .fm-th {
+        padding: 8px 6px;
+        font-size: 11px;
+    }
+
+    .fm-th--check { width: 40px; }
+    .fm-th--size { width: 70px; }
+    .fm-th--date { width: 120px; }
+    .fm-th--type { display: none; }
+    .fm-th--perm { display: none; }
+
+    .fm-row td {
+        padding: 8px 6px;
+        font-size: 11px;
+    }
+
+    .fm-cell--type,
+    .fm-cell--perm {
+        display: none;
+    }
+
+    .fm-cell--name {
+        gap: 5px;
+    }
+
+    .fm-file-link {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fm-nav-bar {
+        padding: 6px;
+        gap: 2px;
+        flex-wrap: wrap;
+    }
+
+    .fm-nav-btn {
+        font-size: 10px;
+        padding: 4px 6px;
+        min-width: 44px;
+        justify-content: center;
+    }
+
+    .fm-nav-btn svg {
+        width: 10px;
+        height: 10px;
+    }
+
+    .fm-table {
+        font-size: 11px;
+    }
+
+    .fm-th {
+        padding: 6px 4px;
+        font-size: 10px;
+    }
+
+    .fm-th--check { width: 35px; }
+    .fm-th--size { width: 60px; }
+    .fm-th--date { width: 100px; }
+
+    .fm-row td {
+        padding: 6px 4px;
+        font-size: 10px;
+    }
+
+    .fm-cell--name {
+        gap: 4px;
+    }
+
+    .fm-file-link {
+        font-size: 11px;
+    }
+
+    .fm-checkbox {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* Mobile card view for very small screens */
+@media (max-width: 360px) {
+    .fm-table-scroll {
+        overflow-x: hidden;
+    }
+
+    .fm-table {
+        display: block;
+    }
+
+    .fm-table thead {
+        display: none;
+    }
+
+    .fm-table tbody {
+        display: block;
+    }
+
+    .fm-row {
+        display: block;
+        border: 1px solid #e8ecf2;
+        border-radius: 6px;
+        margin-bottom: 8px;
+        background: #fff;
+        padding: 12px;
+    }
+
+    .fm-row td {
+        display: block;
+        border: none;
+        padding: 4px 0;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+    }
+
+    .fm-row td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #374151;
+        display: inline-block;
+        width: 80px;
+        font-size: 10px;
+    }
+
+    .fm-cell--name::before {
+        content: "Name:";
+    }
+
+    .fm-cell--size::before {
+        content: "Size:";
+    }
+
+    .fm-cell--modified::before {
+        content: "Modified:";
+    }
+
+    .fm-row:hover td {
+        background: transparent;
+    }
+
+    .fm-row--selected {
+        background: #dbeafe !important;
+        border-color: #3b82f6;
+    }
+
+    .fm-cell--name {
+        display: flex !important;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: 8px;
+    }
+
+    .fm-cell--name::before {
+        display: none;
+    }
+}

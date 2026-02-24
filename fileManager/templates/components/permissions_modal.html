@@ -1,0 +1,130 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/new_file_modal.css' %}">
+
+<!-- Permissions Modal Container -->
+<div class="fm-modal-overlay" id="fm-permissions-modal-overlay">
+    <div class="fm-modal" id="fm-permissions-modal">
+        <!-- Modal Header -->
+        <div class="fm-modal__header">
+            <button class="fm-modal__close" id="fm-permissions-modal-close" aria-label="Close">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/>
+                </svg>
+            </button>
+            <h3 class="fm-modal__title">Change Permissions</h3>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="fm-modal__body">
+            <!-- Selected Files List -->
+            <div class="fm-modal__field">
+                <label class="fm-modal__label">Selected Files:</label>
+                <div class="fm-modal__selected-list" id="fm-permissions-selected-list">
+                    <div class="fm-modal__selected-item">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" class="fm-modal__file-icon">
+                            <path d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"/>
+                        </svg>
+                        <span class="fm-modal__file-name">file.txt</span>
+                    </div>
+                    <div class="fm-modal__selected-item">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" class="fm-modal__folder-icon">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                        </svg>
+                        <span class="fm-modal__file-name">images</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Permissions Grid -->
+            <div class="fm-modal__field">
+                <label class="fm-modal__label">Permissions:</label>
+                <div class="fm-modal__permissions-grid">
+                    <!-- Owner Group -->
+                    <div class="fm-permissions__group">
+                        <div class="fm-permissions__group-header">Owner</div>
+                        <div class="fm-permissions__checkboxes">
+                            <label class="fm-permissions__checkbox-label">
+                                <input type="checkbox" id="perm-owner-read" class="fm-permissions__checkbox" checked>
+                                <span>Read</span>
+                            </label>
+                            <label class="fm-permissions__checkbox-label">
+                                <input type="checkbox" id="perm-owner-write" class="fm-permissions__checkbox" checked>
+                                <span>Write</span>
+                            </label>
+                            <label class="fm-permissions__checkbox-label">
+                                <input type="checkbox" id="perm-owner-execute" class="fm-permissions__checkbox">
+                                <span>Execute</span>
+                            </label>
+                        </div>
+                        <div class="fm-permissions__total">7</div>
+                    </div>
+                    
+                    <!-- Group Group -->
+                    <div class="fm-permissions__group">
+                        <div class="fm-permissions__group-header">Group</div>
+                        <div class="fm-permissions__checkboxes">
+                            <label class="fm-permissions__checkbox-label">
+                                <input type="checkbox" id="perm-group-read" class="fm-permissions__checkbox" checked>
+                                <span>Read</span>
+                            </label>
+                            <label class="fm-permissions__checkbox-label">
+                                <input type="checkbox" id="perm-group-write" class="fm-permissions__checkbox">
+                                <span>Write</span>
+                            </label>
+                            <label class="fm-permissions__checkbox-label">
+                                <input type="checkbox" id="perm-group-execute" class="fm-permissions__checkbox">
+                                <span>Execute</span>
+                            </label>
+                        </div>
+                        <div class="fm-permissions__total">5</div>
+                    </div>
+                    
+                    <!-- Other Group -->
+                    <div class="fm-permissions__group">
+                        <div class="fm-permissions__group-header">Other</div>
+                        <div class="fm-permissions__checkboxes">
+                            <label class="fm-permissions__checkbox-label">
+                                <input type="checkbox" id="perm-other-read" class="fm-permissions__checkbox" checked>
+                                <span>Read</span>
+                            </label>
+                            <label class="fm-permissions__checkbox-label">
+                                <input type="checkbox" id="perm-other-write" class="fm-permissions__checkbox">
+                                <span>Write</span>
+                            </label>
+                            <label class="fm-permissions__checkbox-label">
+                                <input type="checkbox" id="perm-other-execute" class="fm-permissions__checkbox">
+                                <span>Execute</span>
+                            </label>
+                        </div>
+                        <div class="fm-permissions__total">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Numeric Value -->
+            <div class="fm-modal__field">
+                <label for="fm-permissions-numeric" class="fm-modal__label">Numeric Value:</label>
+                <input 
+                    type="text" 
+                    id="fm-permissions-numeric" 
+                    class="fm-modal__input" 
+                    value="755"
+                    maxlength="3"
+                    placeholder="755"
+                    style="font-family: 'Consolas', 'Monaco', monospace; width: 100px; text-align: center;"
+                >
+            </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="fm-modal__footer">
+            <button class="fm-modal__btn fm-modal__btn--primary" id="fm-permissions-modal-confirm">
+                Apply Changes
+            </button>
+            <button class="fm-modal__btn fm-modal__btn--secondary" id="fm-permissions-modal-cancel">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>

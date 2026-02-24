@@ -1,0 +1,18 @@
+<!--{# components/folder_item.html-->
+<!--   Variables attendues :-->
+<!--     folder.name, folder.size, folder.modified, folder.permissions-->
+<!--   Utilisé dans file_list ET dans sidebar (mode "tree")-->
+<!--#}-->
+<tr class="fm-row fm-row--folder" data-name="{{ folder.name }}" data-type="folder">
+    <td class="fm-cell--check">
+        <input type="checkbox" class="fm-checkbox" aria-label="Sélectionner {{ folder.name }}">
+    </td>
+    <td class="fm-cell--name">
+        <span class="fm-file-icon fm-file-icon--folder" aria-hidden="true"></span>
+        <a href="#" class="fm-file-link" title="{{ folder.name }}">{{ folder.name }}</a>
+    </td>
+    <td class="fm-cell--size">{{ folder.size }}</td>
+    <td class="fm-cell--modified">{{ folder.modified }}</td>
+    <td class="fm-cell--type">httpd/unix-directory</td>
+    <td class="fm-cell--perm">{{ folder.permissions }}</td>
+</tr>

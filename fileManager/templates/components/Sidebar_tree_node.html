@@ -1,0 +1,48 @@
+{% load static %}
+<!--{# Composant récursif : noeud de l'arborescence sidebar-->
+<!--   Variables : nodes (list), depth (int)-->
+<!--#}-->
+{% for node in nodes %}
+<div class="fm-tree-node {% if node.is_current %}fm-tree-node--current{% endif %}"
+     style="--depth: {{ depth }};">
+
+    <div class="fm-tree-row
+                {% if node.children %}fm-tree-row--has-children{% endif %}
+                {% if node.is_root %}fm-tree-row--root{% endif %}
+                {% if node.is_current %}fm-tree-row--active{% endif %}"
+         data-path="{{ node.path }}">
+
+        <!-- Indentation via --depth -->
+        <span class="fm-tree-indent"></span>
+
+        <!-- Toggle +/− si enfants -->
+        {% if node.children %}
+        <button class="fm-tree-toggle fm-tree-toggle--open" aria-label="Toggle {{ node.name }}">
+            <svg width="8" height="8" viewBox="0 0 16 16" fill="currentColor">
+                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </button>
+        {% else %}
+        <span class="fm-tree-toggle-placeholder"></span>
+        {% endif %}
+
+        <!-- Icône dossier -->
+        {% if node.is_root %}
+        <span class="fm-tree-icon fm-tree-icon--home" aria-hidden="true"></span>
+        {% else %}
+        <span class="fm-tree-icon fm-tree-icon--folder" aria-hidden="true"></span>
+        {% endif %}
+
+        <!-- Nom -->
+        <span class="fm-tree-label">{{ node.name }}</span>
+    </div>
+
+    <!-- Enfants (récursif) -->
+    {% if node.children %}
+    <div class="fm-tree-children">
+        {% include "components/sidebar_tree_node.html" with nodes=node.children depth=depth|add:1 %}
+    </div>
+    {% endif %}
+
+</div>
+{% endfor %}

@@ -1,0 +1,82 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/new_file_modal.css' %}">
+
+<!-- Delete Modal Container -->
+<div class="fm-modal-overlay" id="fm-delete-modal-overlay">
+    <div class="fm-modal" id="fm-delete-modal">
+        <!-- Modal Header -->
+        <div class="fm-modal__header">
+            <button class="fm-modal__close" id="fm-delete-modal-close" aria-label="Close">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/>
+                </svg>
+            </button>
+            <h3 class="fm-modal__title">Delete Files</h3>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="fm-modal__body">
+            <!-- Warning Message -->
+            <div class="fm-modal__warning">
+                <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor" class="fm-modal__warning-icon">
+                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.383a1.13 1.13 0 0 0 1.965 1.264h11.74a1.13 1.13 0 0 0 1.965-1.264L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg>
+                <div class="fm-modal__warning-content">
+                    <h4 class="fm-modal__warning-title">Warning!</h4>
+                    <p class="fm-modal__warning-text">This action cannot be undone. Are you sure you want to delete these files?</p>
+                </div>
+            </div>
+
+            <!-- Selected Files List -->
+            <div class="fm-modal__field">
+                <label class="fm-modal__label">Files to be deleted:</label>
+                <div class="fm-modal__selected-list" id="fm-delete-selected-list">
+                    <div class="fm-modal__selected-item">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" class="fm-modal__file-icon">
+                            <path d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"/>
+                        </svg>
+                        <span class="fm-modal__file-name">file.txt</span>
+                    </div>
+                    <div class="fm-modal__selected-item">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" class="fm-modal__file-icon">
+                            <path d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"/>
+                        </svg>
+                        <span class="fm-modal__file-name">document.pdf</span>
+                    </div>
+                    <div class="fm-modal__selected-item">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" class="fm-modal__folder-icon">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                        </svg>
+                        <span class="fm-modal__file-name">images</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete Options -->
+            <div class="fm-modal__field">
+                <label class="fm-modal__label">Delete Options:</label>
+                <div class="fm-modal__delete-options">
+                    <label class="fm-modal__delete-option">
+                        <input type="checkbox" id="delete-permanently" class="fm-modal__delete-checkbox">
+                        <span>Delete permanently (skip trash)</span>
+                    </label>
+                    <label class="fm-modal__delete-option">
+                        <input type="checkbox" id="delete-confirm" class="fm-modal__delete-checkbox">
+                        <span>I understand the consequences</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="fm-modal__footer">
+            <button class="fm-modal__btn fm-modal__btn--danger" id="fm-delete-modal-confirm">
+                Delete Files
+            </button>
+            <button class="fm-modal__btn fm-modal__btn--secondary" id="fm-delete-modal-cancel">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>

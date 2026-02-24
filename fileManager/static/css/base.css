@@ -1,0 +1,145 @@
+/* ============================================================
+   base.css  –  Layout global du File Manager
+   Toolbar fixe, sidebar + main scrollables indépendamment
+   ============================================================ */
+
+:root {
+    --fm-toolbar-h:    88px;   /* hauteur totale toolbar (2 rangées) */
+    --fm-sidebar-w:    240px;
+    --fm-font:         'Segoe UI', system-ui, -apple-system, sans-serif;
+    --fm-mono:         'Consolas', 'Menlo', monospace;
+
+    /* Couleurs */
+    --fm-dark-bg:      #232b39;
+    --fm-dark-border:  #3a4560;
+    --fm-brand-red:    #e53e3e;
+    --fm-accent-blue:  #3b82f6;
+    --fm-sidebar-bg:   #ffffff;
+    --fm-main-bg:      #ffffff;
+    --fm-border-light: #dde1e8;
+    --fm-text:         #1d2027;
+    --fm-text-muted:   #6b7280;
+    --fm-link:         #1a6fcf;
+
+    /* Grisé / actif pour les boutons d'action */
+    --fm-btn-gray:     #9aa0ad;
+    --fm-btn-gray-bg:  rgba(255,255,255,0.03);
+    --fm-btn-active:   #e2e8f0;
+    --fm-btn-active-hover: #ffffff;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    height: 100%;
+    overflow: hidden;          /* on empêche le scroll global */
+    font-family: var(--fm-font);
+    font-size: 13px;
+    color: var(--fm-text);
+    background: #e5e9ef;
+}
+
+/* ── Zone sous la toolbar ──────────────────────────── */
+.fm-body {
+    display: flex;
+    position: fixed;
+    top: var(--fm-toolbar-h);
+    left: 0; right: 0; bottom: 0;
+    overflow: hidden;
+}
+
+/* ── Sidebar wrapper ───────────────────────────────── */
+.fm-sidebar-wrapper {
+    width: var(--fm-sidebar-w);
+    min-width: var(--fm-sidebar-w);
+    background: var(--fm-sidebar-bg);
+    border-right: 1px solid var(--fm-border-light);
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+}
+
+.fm-sidebar-wrapper::-webkit-scrollbar { width: 5px; }
+.fm-sidebar-wrapper::-webkit-scrollbar-thumb { background: #c9ced6; border-radius: 3px; }
+
+/* ── Main wrapper ──────────────────────────────────── */
+.fm-main-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    background: var(--fm-main-bg);
+}
+
+/* ── Scrollbar global ──────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: #f0f2f5; }
+::-webkit-scrollbar-thumb  { background: #c0c7d2; border-radius: 4px; }
+
+/* ── Utilitaires ───────────────────────────────────── */
+a { text-decoration: none; }
+
+/* ── Responsive Design ─────────────────────────────── */
+@media (max-width: 768px) {
+    :root {
+        --fm-sidebar-w: 0px;
+        --fm-toolbar-h: 132px; /* More height for stacked toolbar */
+    }
+
+    .fm-body {
+        flex-direction: column;
+    }
+
+    .fm-sidebar-wrapper {
+        position: fixed;
+        top: var(--fm-toolbar-h);
+        left: -100%;
+        width: 280px;
+        height: calc(100vh - var(--fm-toolbar-h));
+        z-index: 99;
+        transition: left 0.3s ease;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+
+    .fm-sidebar-wrapper.mobile-open {
+        left: 0;
+    }
+
+    .fm-main-wrapper {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --fm-toolbar-h: 150px;
+    }
+
+    html, body {
+        font-size: 12px;
+    }
+
+    .fm-body {
+        top: var(--fm-toolbar-h);
+    }
+}
+
+/* Mobile menu overlay */
+@media (max-width: 768px) {
+    .fm-mobile-overlay {
+        display: none;
+        position: fixed;
+        top: var(--fm-toolbar-h);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 98;
+    }
+
+    .fm-mobile-overlay.active {
+        display: block;
+    }
+}

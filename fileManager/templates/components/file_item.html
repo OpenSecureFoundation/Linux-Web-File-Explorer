@@ -1,0 +1,37 @@
+<!--{# components/file_item.html-->
+<!--   Variables attendues :-->
+<!--     file.name, file.size, file.modified, file.type, file.permissions, file.ext-->
+<!--#}-->
+<tr class="fm-row fm-row--file" data-name="{{ file.name }}" data-type="file" data-ext="{{ file.ext }}">
+    <td class="fm-cell--check">
+        <input type="checkbox" class="fm-checkbox" aria-label="Sélectionner {{ file.name }}">
+    </td>
+    <td class="fm-cell--name">
+        <span class="fm-file-icon fm-file-icon--{{ file.ext }}" aria-hidden="true">
+            {% if file.ext == 'php' %}
+                <span class="fm-ext-badge fm-ext--php">php</span>
+            {% elif file.ext == 'js' %}
+                <span class="fm-ext-badge fm-ext--js">js</span>
+            {% elif file.ext == 'css' %}
+                <span class="fm-ext-badge fm-ext--css">css</span>
+            {% elif file.ext == 'json' %}
+                <span class="fm-ext-badge fm-ext--json">{}</span>
+            {% elif file.ext == 'xml' %}
+                <span class="fm-ext-badge fm-ext--xml">xml</span>
+            {% elif file.ext == 'png' or file.ext == 'jpg' or file.ext == 'ico' %}
+                <span class="fm-ext-badge fm-ext--img">img</span>
+            {% elif file.ext == 'md' %}
+                <span class="fm-ext-badge fm-ext--md">md</span>
+            {% elif file.ext == 'log' %}
+                <span class="fm-ext-badge fm-ext--log">log</span>
+            {% else %}
+                <span class="fm-ext-badge fm-ext--txt">txt</span>
+            {% endif %}
+        </span>
+        <a href="#" class="fm-file-link" title="{{ file.name }}">{{ file.name }}</a>
+    </td>
+    <td class="fm-cell--size">{{ file.size }}</td>
+    <td class="fm-cell--modified">{{ file.modified }}</td>
+    <td class="fm-cell--type">{{ file.type }}</td>
+    <td class="fm-cell--perm">{{ file.permissions }}</td>
+</tr>

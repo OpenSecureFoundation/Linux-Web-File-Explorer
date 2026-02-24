@@ -1,0 +1,368 @@
+/* ============================================================
+   toolbar.css  –  Barre d'outils File Manager (fixe, 2 rangées)
+   ============================================================ */
+
+/* ── Position fixe en haut ─────────────────────────────── */
+.fm-toolbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    background: #232b39;
+    border-bottom: 2px solid #1a2030;
+    user-select: none;
+}
+
+/* ── Rangée 1 : Brand + Search ─────────────────────────── */
+.fm-toolbar__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    height: 44px;
+    border-bottom: 1px solid #2e3a50;
+}
+
+/* Brand */
+.fm-toolbar__brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+}
+
+.fm-logo {
+    width: 30px;
+    height: 30px;
+    background: #c0392b;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 11px;
+    color: #fff;
+    letter-spacing: -0.5px;
+    font-family: 'Segoe UI', sans-serif;
+    flex-shrink: 0;
+}
+
+.fm-toolbar__title {
+    color: #dde4f0;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+}
+
+/* Search zone */
+.fm-toolbar__search {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.fm-search-lbl {
+    color: #8a96ac;
+    font-size: 12.5px;
+    white-space: nowrap;
+}
+
+.fm-select {
+    background: #1c2435;
+    border: 1px solid #3a4a63;
+    color: #c8d4e8;
+    font-size: 12px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    height: 28px;
+    outline: none;
+    cursor: pointer;
+}
+
+.fm-select:focus { border-color: #4a90d9; }
+
+.fm-search-input {
+    background: #1c2435;
+    border: 1px solid #3a4a63;
+    color: #c8d4e8;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    height: 28px;
+    width: 160px;
+    outline: none;
+}
+
+.fm-search-input:focus { border-color: #4a90d9; }
+
+/* Buttons in search */
+.fm-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.12s, color 0.12s;
+    border: 1px solid transparent;
+    line-height: 1;
+}
+
+.fm-btn--go {
+    background: #2a72c8;
+    color: #fff;
+    border-color: #1f5ea8;
+    padding: 4px 14px;
+    height: 28px;
+    font-weight: 600;
+}
+
+.fm-btn--go:hover { background: #1f5ea8; }
+
+.fm-btn--settings {
+    background: #2c3548;
+    color: #b0bdd4;
+    border-color: #3a4a63;
+    padding: 4px 10px;
+    height: 28px;
+}
+
+.fm-btn--settings:hover { background: #38455e; color: #dde4f0; }
+
+/* ── Rangée 2 : Actions ─────────────────────────────────── */
+.fm-toolbar__actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0;
+    padding: 0 8px;
+    height: 34px;             /* rangée 2 plus slim */
+    background: #2c3548;
+    overflow-x: auto;
+}
+
+.fm-toolbar__actions::-webkit-scrollbar { height: 3px; }
+.fm-toolbar__actions::-webkit-scrollbar-thumb { background: #3a4a63; border-radius: 2px; }
+
+/* ── Boutons d'action ──────────────────────────────────── */
+.fm-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 9px;
+    height: 26px;
+    font-size: 12px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.1s, color 0.1s;
+    background: transparent;
+    line-height: 1;
+}
+
+/* Séparateur */
+.fm-sep {
+    display: inline-block;
+    width: 1px;
+    height: 18px;
+    background: #3a4a63;
+    margin: 0 4px;
+    flex-shrink: 0;
+}
+
+/* Toujours actifs (File, Folder, Upload) */
+.fm-action--always {
+    color: #c8d4e8;
+}
+
+.fm-action--always:hover {
+    background: rgba(255,255,255,0.1);
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.08);
+}
+
+/* Grisés (nécessitent sélection) */
+.fm-action--sel {
+    color: #5a6880;           /* gris clair — "désactivé" */
+    cursor: default;
+    pointer-events: none;
+}
+
+/* État actif (classe ajoutée par JS quand sélection) */
+.fm-action--sel.fm-action--active {
+    color: #c8d4e8;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.fm-action--sel.fm-action--active:hover {
+    background: rgba(255,255,255,0.1);
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.08);
+}
+
+/* Delete : rouge quand actif */
+.fm-action--danger.fm-action--active {
+    color: #f87171 !important;
+}
+
+.fm-action--danger.fm-action--active:hover {
+    background: rgba(248,113,113,0.15) !important;
+    color: #fca5a5 !important;
+}
+
+/* ── Responsive Toolbar ───────────────────────────────── */
+@media (max-width: 768px) {
+    .fm-toolbar {
+        height: auto;
+        min-height: var(--fm-toolbar-h);
+    }
+
+    .fm-toolbar__top {
+        flex-direction: column;
+        height: auto;
+        padding: 8px;
+        gap: 8px;
+        align-items: stretch;
+    }
+
+    .fm-toolbar__brand {
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    /* Mobile menu toggle button */
+    .fm-mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: 1px solid #3a4a63;
+        color: #c8d4e8;
+        border-radius: 4px;
+        padding: 6px;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+        margin-right: 8px;
+    }
+
+    .fm-mobile-menu-toggle:hover {
+        background: rgba(255,255,255,0.1);
+        color: #ffffff;
+    }
+
+    .fm-mobile-menu-toggle svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .fm-toolbar__search {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .fm-search-lbl {
+        font-size: 11px;
+    }
+
+    .fm-select, .fm-search-input, .fm-btn {
+        height: 32px;
+        font-size: 11px;
+    }
+
+    .fm-search-input {
+        width: 140px;
+        flex: 1;
+        min-width: 120px;
+    }
+
+    .fm-toolbar__actions {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 8px;
+        justify-content: center;
+        gap: 4px;
+    }
+
+    .fm-action {
+        flex: 0 0 auto;
+        min-width: 60px;
+        justify-content: center;
+        font-size: 11px;
+        padding: 6px 8px;
+        height: 32px;
+    }
+
+    .fm-sep {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .fm-toolbar__top {
+        padding: 6px;
+    }
+
+    .fm-toolbar__brand {
+        gap: 6px;
+    }
+
+    .fm-logo {
+        width: 26px;
+        height: 26px;
+        font-size: 10px;
+    }
+
+    .fm-toolbar__title {
+        font-size: 13px;
+    }
+
+    .fm-search-lbl {
+        font-size: 10px;
+    }
+
+    .fm-select, .fm-search-input, .fm-btn {
+        height: 28px;
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+
+    .fm-search-input {
+        width: 100px;
+    }
+
+    .fm-toolbar__actions {
+        padding: 6px;
+        gap: 2px;
+    }
+
+    .fm-action {
+        font-size: 10px;
+        padding: 4px 6px;
+        height: 28px;
+        min-width: 50px;
+    }
+
+    .fm-action svg {
+        width: 9px;
+        height: 9px;
+    }
+
+    .fm-mobile-menu-toggle svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* Hide mobile menu toggle on desktop */
+@media (min-width: 769px) {
+    .fm-mobile-menu-toggle {
+        display: none;
+    }
+}

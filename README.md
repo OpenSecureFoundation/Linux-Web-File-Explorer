@@ -43,5 +43,4 @@ Créer une application web permettant de faire du CRUD sur les fichiers et répe
 7. Accéder à l’application :
 - Ouvrir le navigateur à l’adresse :http://127.0.0.1:8000/
     
-# Étapes en cours... 
-    ##Conception des interfaces Html Css
+8. Conception des interfaces Html Css
